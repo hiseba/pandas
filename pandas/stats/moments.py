@@ -225,7 +225,7 @@ def _flex_binary_moment(arg1, arg2, f):
         return _flex_binary_moment(arg2, arg1, f)
 
 
-def rolling_corr_pairwise(df, window, min_periods=None):
+def rolling_corr_pairwise(df, window, min_periods=None,center=False):
     """
     Computes pairwise rolling correlation matrices as Panel whose items are
     dates
@@ -248,7 +248,7 @@ def rolling_corr_pairwise(df, window, min_periods=None):
     for i, k1 in enumerate(df.columns):
         for k2 in df.columns[i:]:
             corr = rolling_corr(df[k1], df[k2], window,
-                                min_periods=min_periods)
+                                min_periods=min_periods,center=center)
             all_results[k1][k2] = corr
             all_results[k2][k1] = corr
 
